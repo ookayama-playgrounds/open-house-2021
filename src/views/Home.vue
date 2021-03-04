@@ -1,18 +1,45 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <h1>OpenHouse 2021</h1>
+    <p>あいうえおあいうえお</p>
+    <p>かきくけこかきくけこ</p>
+
+    <div class="card">
+      <h2>Program</h2>
+      <Timeline :value="events">
+        <template #opposite="slotProps">
+          <small class="p-text-secondary">{{slotProps.item.date}}</small>
+        </template>
+        <template #content="slotProps">
+          {{slotProps.item.status}}
+        </template>
+      </Timeline>
+    </div>
+
+    <h2>Posters</h2>
+    <p>TBD</p>
+
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { defineComponent, ref } from "vue";
+import Timeline from 'primevue/timeline';
 
 export default defineComponent({
   name: "Home",
   components: {
-    HelloWorld
-  }
+    Timeline
+  },
+  setup() {
+    const events = ref([
+          {status: 'Opening', date: '2021/3/20 14:00'},
+          {status: 'Poster Session', date: '2021/3/20 14:15-16:30'},
+          {status: 'Closing', date: '2021/3/20 16:30'},
+    ]);
+    return {
+      events
+    }
+  },
 });
 </script>
